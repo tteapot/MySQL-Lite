@@ -57,12 +57,15 @@ require 'mysql-lite.php';
 DB('path/to/config.php');
 
 // Run a query
-$result = DB()->query('select * from my_table where id=1');
+$result = DB()->select('* from my_table where id=1');
 
 // Check for errors
 if (DB()->last_error()) {
 	echo 'Uh oh! A database error occured: '.DB()->last_error();
 }
+
+// Output the results
+print_r($result);
 
 /* End of file example.php */</code></pre>
 
@@ -82,12 +85,15 @@ require 'mysql-lite.php';
 $DB = new Database_connection('path/to/config.php');
 
 // Run a query
-$result = $DB->query('select * from my_table where id=1');
+$result = $DB->select('* from my_table where id=1');
 
 // Check for errors
 if ($DB->last_error()) {
 	echo 'Uh oh! A database error occured: '.$DB->last_error();
 }
+
+// Output the result
+print_r($result);
 
 /* End of file example.php */</code></pre>
 
@@ -97,9 +103,24 @@ h2. Documentation
 
 Below is the full API documentation. This library is actually quite powerful, do not let its size deceve you.
 
+h3. DB()
 
+The @DB()@ function can be used in three different ways. One, it can be used without parameters to return the stored static instance of @Database_connection@, eg.
 
+bc. DB()->query(...)
 
+Second, it can be given a file path parameter, and third, an array parameter. In the last two instances, the data recieved will be used as configuration data to create a new @Database_connection@ instance, eg.
+
+<pre><code>DB('path/to/config.php')
+DB(array(
+	'hostname' => ...,
+	'username' => ...,
+	'password' => ...,
+	'database' => ...
+))</code></pre>
+
+*Note:* if you use the @DB()@ function with a parameter more then once, only the last connection is remembered; others are discarded.
+*Note:* the @DB()@ function is only available in PHP5+ and will trigger and error in any version previous.
 
 
 
