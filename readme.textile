@@ -122,7 +122,23 @@ DB(array(
 *Note:* if you use the @DB()@ function with a parameter more then once, only the last connection is remembered; others are discarded.
 *Note:* the @DB()@ function is only available in PHP5+ and will trigger and error in any version previous.
 
+h3. Database_connection::__construct
 
+bc. void Database_connection::__construct ( mixed $config )
+
+The main constructor, this function can take either a string file path to a config file or an array containing config values.
+
+h3. Database_connection::query
+
+bc. mixed Database_connection::query ( string $query[, string &$err ])
+
+Runs a query on the database, returning the result. If an error occurs, the result will be stored in @$err@, otherwise, @$err@ will be @NULL@.
+
+h3. Database_connection::select
+
+bc. array Database_connection::select ( string $query[, string &$err ])
+
+Runs a select query on the database, returning the resulting nested associative array structure. If an error occurs, the result will be stored in @$err@, otherwise, @$err@ will be @NULL@.
 
 
 

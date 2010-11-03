@@ -19,12 +19,17 @@ class Database_connection {
 	var $connection = null;
 	var $error_stack = array();
 	
+	// PHP4 constructor fix
+	function Database_connection($config) {
+		$this->__construct($config);
+	}
+	
 	// Connects to the database
 	function __construct($config) {
 		if (is_array($config)) {
 			$conf = $config;
 		} elseif (is_string($config)) {
-			$conf = $this->read_db_config($config);
+			$conf = $this->_read_db_config($config);
 		} else {
 			trigger_error('Invalid value for Database_connection config');
 		}
@@ -38,7 +43,7 @@ class Database_connection {
 	}
 	
 	// Reads the database config file
-	function read_db_config($config_file) {
+	function _read_db_config($config_file) {
 		require $config_file;
 		return array_merge(array(
 			'hostname' => null,
