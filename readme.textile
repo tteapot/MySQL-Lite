@@ -1,0 +1,119 @@
+h1. MySQL Lite
+
+Author: James Brumond
+Version 0.1.1-b
+
+Copyright 2010 James Brumond
+Dual licensed under MIT and GPL
+
+h2. Description
+
+A very lightweight MySQL interface class for PHP.
+
+h2. Basic Usage
+
+MySQL Lite is very easy to use. To start using it, drop the @mysql-lite.php@ file into your website directory. You can give the class config data on-the-fly, but it's probably easier to use the built-in config file functionality, so create a file for holding your config data. The name doesn't matter; Call it what you like. Your config file should contain a single PHP array similar to the following:
+
+==<pre><code><?php
+
+/*
+ * MySQL Lite Configuration File
+ */
+
+// The server hostname
+$db['hostname'] = 'localhost';
+
+// The user to login with
+$db['username'] = 'some_user';
+
+// The password to login with
+$db['password'] = 'some_pass';
+
+// The database to use
+$db['database'] = 'db_my_database';
+
+/* End of file db-config.php */</code></pre>==
+
+h3. PHP 5
+
+If you are using PHP5+, then you have method chaining, and therefore can use MySQL Lite the really awesome way. MySQL Lite contains a function called @DB()@ which both creates and returns a single, static instance of the @Database_connection@ class. Because of this, you can use MySQL Lite like so:
+
+==<pre><code>// Read/output an entire table
+print_r(
+	DB('path/to/config.php')->select('* from my_table')
+);</code></pre>==
+
+Pretty slick, right? A full example of using MySQL Lite might look something like this:
+
+==<pre><code><?php
+
+/*
+ * An example of MySQL Lite in PHP5
+ */
+
+require 'mysql-lite.php';
+
+// Read the config file
+DB('path/to/config.php');
+
+// Run a query
+$result = DB()->query('select * from my_table where id=1');
+
+// Check for errors
+if (DB()->last_error()) {
+	echo 'Uh oh! A database error occured: '.DB()->last_error();
+}
+
+/* End of file example.php */</code></pre>==
+
+h3. PHP 4
+
+If you are using PHP <= 4, then you will have to do things the boring way. You cannot use the @DB()@ function with its method chaining awesomeness; you have to do things the normal OOP(Object Oriented Programming) way. For example, the same code above, in PHP 4, would be written as:
+
+==<pre><code><?php
+
+/*
+ * An example of MySQL Lite in PHP4
+ */
+
+require 'mysql-lite.php';
+
+// Read the config file
+$DB = new Database_connection('path/to/config.php');
+
+// Run a query
+$result = $DB->query('select * from my_table where id=1');
+
+// Check for errors
+if ($DB->last_error()) {
+	echo 'Uh oh! A database error occured: '.$DB->last_error();
+}
+
+/* End of file example.php */</code></pre>==
+
+Still quite clean looking and graceful, but not quite as cool.
+
+h2. Documentation
+
+Below is the full API documentation. This library is actually quite powerful, do not let its size deceve you.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
