@@ -140,7 +140,11 @@ bc. array Database_connection::select ( string $query[, string &$err ])
 
 Runs a select query on the database, returning the resulting nested associative array structure. If an error occurs, the result will be stored in @$err@, otherwise, @$err@ will be @NULL@.
 
+h3. Database_connection::source
 
+bc. bool Database_connection::source ( string $filepath[, bool $stop_on_error = false ])
+
+Runs all of the SQL commands inside of the given file. If a second parameter is given, it will determine whether the function should stop running when an error occurs.
 
 
 
