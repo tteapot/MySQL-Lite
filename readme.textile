@@ -14,7 +14,7 @@ h2. Basic Usage
 
 MySQL Lite is very easy to use. To start using it, drop the @mysql-lite.php@ file into your website directory. You can give the class config data on-the-fly, but it's probably easier to use the built-in config file functionality, so create a file for holding your config data. The name doesn't matter; Call it what you like. Your config file should contain a single PHP array similar to the following:
 
-==<pre><code><?php
+<pre><code><?php
 
 /*
  * MySQL Lite Configuration File
@@ -32,20 +32,20 @@ $db['password'] = 'some_pass';
 // The database to use
 $db['database'] = 'db_my_database';
 
-/* End of file db-config.php */</code></pre>==
+/* End of file db-config.php */</code></pre>
 
 h3. PHP 5
 
 If you are using PHP5+, then you have method chaining, and therefore can use MySQL Lite the really awesome way. MySQL Lite contains a function called @DB()@ which both creates and returns a single, static instance of the @Database_connection@ class. Because of this, you can use MySQL Lite like so:
 
-==<pre><code>// Read/output an entire table
+<pre><code>// Read/output an entire table
 print_r(
 	DB('path/to/config.php')->select('* from my_table')
-);</code></pre>==
+);</code></pre>
 
 Pretty slick, right? A full example of using MySQL Lite might look something like this:
 
-==<pre><code><?php
+<pre><code><?php
 
 /*
  * An example of MySQL Lite in PHP5
@@ -64,13 +64,13 @@ if (DB()->last_error()) {
 	echo 'Uh oh! A database error occured: '.DB()->last_error();
 }
 
-/* End of file example.php */</code></pre>==
+/* End of file example.php */</code></pre>
 
 h3. PHP 4
 
 If you are using PHP <= 4, then you will have to do things the boring way. You cannot use the @DB()@ function with its method chaining awesomeness; you have to do things the normal OOP(Object Oriented Programming) way. For example, the same code above, in PHP 4, would be written as:
 
-==<pre><code><?php
+<pre><code><?php
 
 /*
  * An example of MySQL Lite in PHP4
@@ -89,7 +89,7 @@ if ($DB->last_error()) {
 	echo 'Uh oh! A database error occured: '.$DB->last_error();
 }
 
-/* End of file example.php */</code></pre>==
+/* End of file example.php */</code></pre>
 
 Still quite clean looking and graceful, but not quite as cool.
 
