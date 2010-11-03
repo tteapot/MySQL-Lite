@@ -164,6 +164,21 @@ bc. string Database_connection::last_error ( void )
 
 Returns the last error to occur. If no errors have occured (or, no errors have occured since the last stack clear), this function will return @NULL@.
 
+h2. Feedback
+
+Please report all bugs and make all feature requests using the GitHub "Issue Tracker":https://github.com/kbjr/MySQL-Lite/issues and make all code submissions using a GitHub pull request. Thank You :)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
