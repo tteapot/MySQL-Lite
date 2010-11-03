@@ -146,6 +146,24 @@ bc. bool Database_connection::source ( string $filepath[, bool $stop_on_error = 
 
 Runs all of the SQL commands inside of the given file. If a second parameter is given, it will determine whether the function should stop running when an error occurs.
 
+h3. Database_connection::errors
+
+bc. array Database_connection::errors ( void )
+
+MySQL Lite holds on to a stack of all errors that have occured in SQL commands. This function returns the entire error stack.
+
+h3. Database_connection::clear_error_stack
+
+bc. void Database_connection::clear_error_stack ( void )
+
+Clears out all entries in the internal error stack.
+
+h3. Database_connection::last_error
+
+bc. string Database_connection::last_error ( void )
+
+Returns the last error to occur. If no errors have occured (or, no errors have occured since the last stack clear), this function will return @NULL@.
+
 
 
 
